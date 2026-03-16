@@ -7,7 +7,7 @@ import { Bell, User, Search } from "lucide-react"
 
 export default function Navbar() {
 
-  const [openMenu, setOpenMenu] = useState(null)
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
 
   return (
     <header className="shadow-md bg-white">

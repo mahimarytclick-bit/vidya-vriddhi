@@ -11,7 +11,7 @@ const texts = [
 "Discover Competitive Exams"
 ]
 
-const [textIndex,setTextIndex] = useState(0)
+const [textIndex, setTextIndex] = useState<number>(0)
 
 useEffect(()=>{
 const interval = setInterval(()=>{

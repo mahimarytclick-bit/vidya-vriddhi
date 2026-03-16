@@ -4,12 +4,13 @@ import { useState } from "react"
 import Image from "next/image"
 import { MapPin, Star } from "lucide-react"
 
-const colleges = {
-Engineering: [
-{
-name:"IIT Delhi",
-city:"Delhi",
-rating:"4.8",
+interface College {
+  name: string
+  city: string
+  rating: string
+  fees: string
+  courses: string
+  image: string
 fees:"₹2.2L / year",
 courses:"40+ Courses",
 image:"https://images.unsplash.com/photo-1590362891991-f776e747a588"
@@ -84,7 +85,7 @@ image:"https://upload.wikimedia.org/wikipedia/commons/2/20/FMS-_The_Red_Building
 
 export default function TopColleges(){
 
-const [active,setActive] = useState("Engineering")
+const [active, setActive] = useState<string>("Engineering")
 
 return(
 

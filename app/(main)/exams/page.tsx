@@ -5,7 +5,25 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Search, Filter, Calendar, Clock, Users, BookOpen, Award, FileText } from "lucide-react"
 
-const allExams = [
+interface Exam {
+  id: number
+  slug: string
+  name: string
+  fullName: string
+  category: string
+  level: string
+  frequency: string
+  duration: string
+  mode: string
+  image: string
+  registrationDates: string
+  examDates: string
+  eligibility: string
+  colleges: string
+  description: string
+}
+
+const allExams: Exam[] = [
   {
     id: 1,
     slug: "jee-main",
@@ -144,17 +162,17 @@ const allExams = [
   }
 ]
 
-const examCategories = ["All", "Engineering", "Medical", "MBA", "Civil Services", "Law", "Undergraduate"]
-const examLevels = ["All Levels", "National", "State", "University"]
+const examCategories: string[] = ["All", "Engineering", "Medical", "MBA", "Civil Services", "Law", "Undergraduate"]
+const examLevels: string[] = ["All Levels", "National", "State", "University"]
 
 export default function ExamsPage() {
   const router = useRouter()
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [selectedLevel, setSelectedLevel] = useState("All Levels")
-  const [showFilters, setShowFilters] = useState(false)
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState<string>("All")
+  const [selectedLevel, setSelectedLevel] = useState<string>("All Levels")
+  const [showFilters, setShowFilters] = useState<boolean>(false)
 
-  const filteredExams = allExams.filter(exam => {
+  const filteredExams: Exam[] = allExams.filter(exam => {
     const matchesSearch = exam.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          exam.fullName.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesCategory = selectedCategory === "All" || exam.category === selectedCategory

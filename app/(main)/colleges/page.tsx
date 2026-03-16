@@ -5,7 +5,23 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Search, Filter, MapPin, Star, GraduationCap, Users, BookOpen, Award } from "lucide-react"
 
-const allColleges = [
+interface College {
+  id: number
+  slug: string
+  name: string
+  city: string
+  state: string
+  rating: string
+  fees: string
+  courses: string
+  image: string
+  type: string
+  established: string
+  students: string
+  description: string
+}
+
+const allColleges: College[] = [
   {
     id: 1,
     slug: "iit-delhi",
@@ -128,17 +144,17 @@ const allColleges = [
   }
 ]
 
-const collegeTypes = ["All", "Engineering", "MBA", "Medical", "Arts", "Science", "Commerce"]
-const states = ["All States", "Delhi", "Maharashtra", "Karnataka", "Tamil Nadu", "Gujarat", "Rajasthan"]
+const collegeTypes: string[] = ["All", "Engineering", "MBA", "Medical", "Arts", "Science", "Commerce"]
+const states: string[] = ["All States", "Delhi", "Maharashtra", "Karnataka", "Tamil Nadu", "Gujarat", "Rajasthan"]
 
 export default function CollegesPage() {
   const router = useRouter()
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedType, setSelectedType] = useState("All")
-  const [selectedState, setSelectedState] = useState("All States")
-  const [showFilters, setShowFilters] = useState(false)
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [selectedType, setSelectedType] = useState<string>("All")
+  const [selectedState, setSelectedState] = useState<string>("All States")
+  const [showFilters, setShowFilters] = useState<boolean>(false)
 
-  const filteredColleges = allColleges.filter(college => {
+  const filteredColleges: College[] = allColleges.filter(college => {
     const matchesSearch = college.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          college.city.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesType = selectedType === "All" || college.type === selectedType
