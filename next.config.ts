@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
       "images.unsplash.com",
       "upload.wikimedia.org",
       "thumbs.dreamstime.com",
-      "img.freepik.com"
+      "img.freepik.com",
+       "cdn-icons-png.flaticon.com",
+       "flagcdn.com",
+       'encrypted-tbn0.gstatic.com'
     ],
   },
 
