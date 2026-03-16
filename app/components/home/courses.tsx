@@ -3,7 +3,13 @@
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
-const courses = [
+interface Course {
+  title: string
+  students: string
+  image: string
+}
+
+const courses: Course[] = [
 {
 title:"Engineering",
 students:"1.2M Students",
@@ -81,7 +87,7 @@ View All
 
 <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
 
-{courses.map((course,index)=>(
+{courses.map((course: Course, index: number) => (
 
 <div
 key={index}
