@@ -3,9 +3,23 @@
 import { useState } from "react"
 import Image from "next/image"
 import { MapPin, Star } from "lucide-react"
+import Link from "next/link"
 
-const colleges = {
+interface College {
+  name: string
+  city: string
+  rating: string
+  fees: string
+  courses: string
+  image: string
+}
+
+type CollegeCategory = "Engineering" | "MBA"
+
+const colleges: Record<CollegeCategory, College[]> = {
+
 Engineering: [
+
 {
 name:"IIT Delhi",
 city:"Delhi",
@@ -41,9 +55,11 @@ fees:"₹3.1L / year",
 courses:"25+ Courses",
 image:"https://images.unsplash.com/photo-1541339907198-e08756dedf3f"
 }
+
 ],
 
 MBA: [
+
 {
 name:"IIM Ahmedabad",
 city:"Ahmedabad",
@@ -79,12 +95,14 @@ fees:"₹2L total",
 courses:"MBA Programs",
 image:"https://upload.wikimedia.org/wikipedia/commons/2/20/FMS-_The_Red_Building_of_Dreams.JPG"
 }
+
 ]
+
 }
 
 export default function TopColleges(){
 
-const [active,setActive] = useState("Engineering")
+const [active,setActive] = useState<CollegeCategory>("Engineering")
 
 return(
 
@@ -97,6 +115,7 @@ return(
 <div className="flex justify-between items-center mb-10">
 
 <div>
+
 <h2 className="text-3xl font-bold text-black">
 Top Colleges
 </h2>
@@ -104,11 +123,16 @@ Top Colleges
 <p className="text-gray-600 mt-1">
 Explore the best colleges in India with rankings, fees and courses
 </p>
+
 </div>
+
+<Link href="/colleges">
 
 <button className="text-orange-500 font-medium">
 View All →
 </button>
+
+</Link>
 
 </div>
 
@@ -117,7 +141,8 @@ View All →
 
 <div className="flex gap-4 mb-10">
 
-{Object.keys(colleges).map((tab)=>(
+{(Object.keys(colleges) as CollegeCategory[]).map((tab)=>(
+
 <button
 key={tab}
 onClick={()=>setActive(tab)}
@@ -130,8 +155,11 @@ ${active===tab
 
 `}
 >
+
 {tab}
+
 </button>
+
 ))}
 
 </div>
@@ -193,11 +221,13 @@ className="object-cover"
 {college.fees}
 </p>
 
+<Link href="/colleges">
+
 <button className="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm">
-
 View Details
-
 </button>
+
+</Link>
 
 </div>
 
@@ -212,4 +242,5 @@ View Details
 </section>
 
 )
+
 }
